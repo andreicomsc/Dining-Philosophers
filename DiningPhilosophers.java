@@ -5,6 +5,7 @@ public class DiningPhilosophers {
         final int problemSize=5;
         Fork leftFork;
         Fork rightFork;
+        String philosopherColour = "";
         
         Philosopher[] philosophers = new Philosopher[problemSize];
         Fork[] forks = new Fork[problemSize];
@@ -16,9 +17,8 @@ public class DiningPhilosophers {
         for (int i = 0; i < problemSize; i++) {
             leftFork = forks[i];
             rightFork = forks[(i + 1) % problemSize];
-
-            philosophers[i] = new Philosopher(leftFork, rightFork, i+1);
-            
+            philosopherColour = "\u001B[3" + String.valueOf(i+2) + "m";
+            philosophers[i] = new Philosopher(leftFork, rightFork, i+1, philosopherColour);
             Thread t = new Thread(philosophers[i]);
             t.start();
         }

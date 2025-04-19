@@ -3,19 +3,21 @@ public class Philosopher implements Runnable {
     private Fork leftFork;
     private Fork rightFork;
     private int philosopherNumber;
+    private String philosopherColour;
 
     // Shared "philosophersManager" lock object, and the "readyToEat" flag
     private static Object philosophersManager = new Object();
     private boolean readyToEat = false;
 
-    public Philosopher(Fork left, Fork right, int philNumber) {
+    public Philosopher(Fork left, Fork right, int philNumber, String philColour) {
         leftFork = left;
         rightFork = right;
         philosopherNumber=philNumber;
+        philosopherColour=philColour;
     }
     
 	private void doAction(String action) throws InterruptedException {
-        System.out.println("Philosopher number " + philosopherNumber + " is " + action);
+        System.out.println(philosopherColour + "Philosopher number " + philosopherNumber + " is " + action);
         Thread.sleep(((int) (Math.random() * 1000)));
     }
 
